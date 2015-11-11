@@ -28,7 +28,7 @@ while($row = $result->fetch_assoc()) {
     echo "<td>" . $row['receiver'] . "</td>";
     echo "<td>" . $row['time'] . "</td>";
     echo "<td>" . $row['location'] . "</td>";
-    echo "<td>" . $row['moneyQuantity'] . "</td>";
+    echo "<td>" . $row['moneyamount'] . "</td>";
     echo "<td>" . $row['description'] . "</td>";
     echo "<td>" . "<a href=''>修改</a>" . "|" . "<a href=''>删除</a>". "</td>";
     echo "</tr>";
