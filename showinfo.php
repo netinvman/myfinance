@@ -47,7 +47,7 @@ while($row = $result->fetch_assoc()) {
     echo "</tr>";
 }
 echo "<tr>";
-echo "<td colspan='8'>" . "<a href='page={$prevpage}'>上一页</a>" . "|" . "<a href='page={$nextpage}'>下一页</a>" . "</td>";
+echo "<td colspan='8'>" . "<a href='{$_SERVER['PHP_SELF']}&page={$prevpage}'>上一页</a>" . "|" . "<a href='{$_SERVER['PHP_SELF']}&page={$nextpage}'>下一页</a>" . "</td>";
 echo "</tr>";
 echo "</table>";
 
