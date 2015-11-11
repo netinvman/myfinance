@@ -1,4 +1,5 @@
 <?php
+header("Content-Type:text/html; charset=utf8");
 require 'includes/conn.php';
 
 $sender = $mysqli->real_escape_string($_POST['sender']);
