@@ -8,7 +8,7 @@ $location = $mysqli->real_escape_string($_POST['location']);
 $moneyamount = $mysqli->real_escape_string($_POST['moneyamount']);
 $description = $mysqli->real_escape_string($_POST['description']);
 
-$sql = "INSERT INTO activityinfo(sender,receiver,time,location,moneyQuantity,description) VALUES('$sender','$receiver','$time','$location','$moneyamount','$description')";
+$sql = "INSERT INTO activityinfo(sender,receiver,time,location,moneyamount,description) VALUES('$sender','$receiver','$time','$location','$moneyamount','$description')";
 
 if (!$mysqli->query($sql)) {
     printf("Error: %s\n", $mysqli->error);
