@@ -5,9 +5,9 @@
  * date: 2015/11/11
  */
 
- $msyqli = @new mysqli('localhost', 'myfinance', 'myfinance', 'myfinance');
- if ($mysqli->errno) {
-     printf("Connection failed: " . $mysqli->connect_error);
+ $mysqli= @new mysqli('localhost', 'myfinance', 'myfinance', 'myfinance');
+ if (mysqli_connect_errno()) {
+     printf("Connect failed: %s\n", mysqli_connect_error());
      exit();
  }
 
