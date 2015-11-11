@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS activityinfo (
     receiver VARCHAR(30) NOT NULL DEFAULT '',
     time VARCHAR(30), 
     location VARCHAR(50),
-    moneyQuantity int,
+    moneyamount int,
     description TEXT,
     PRIMARY KEY (id)
 );
