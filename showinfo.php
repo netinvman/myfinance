@@ -1,4 +1,5 @@
 <?php
+header("Content-Type:text/html; charset=utf8");
 require 'includes/conn.php';
 
 /* escape $_GET variable */
