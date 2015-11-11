@@ -6,7 +6,19 @@ require 'includes/conn.php';
 $sender = $mysqli->real_escape_string($_GET['sender']);
 $receiver = $mysqli->real_escape_string($_GET['receiver']);
 
-$query = "SELECT * FROM activityinfo WHERE sender like '%{$sender}%' and receiver like '%{$receiver}%'";
+
+$page = $_GET['page']?$_GET['page']:1;
+$limitnum = 10;
+$offset = ($page - 1) * $limitnum;
+$totalrst = $mysqli->query("SELECT COUNT(*) FROM activityinfo");
+$totalarr = $totalrst->fetch_row();
+$totalpage = ceil($totalarr[0] / $limitnum);
+$prevpage = $page -1;
+$nextpage = $page + 1;
+if ($nextpage > totalpage) {
+    $nextpage = $totalpage;
+}
+$query = "SELECT * FROM activityinfo WHERE sender like '%{$sender}%' and receiver like '%{$receiver}%' order by id limit $offset, $limitnum";
 if (!$result = $mysqli->query($query)) {
     printf("Error: %s\n", $mysqli->error);
 }
@@ -34,6 +46,12 @@ while($row = $result->fetch_assoc()) {
     echo "<td>" . "<a href=''>修改</a>" . "|" . "<a href=''>删除</a>". "</td>";
     echo "</tr>";
 }
+echo "<tr>";
+echo "<td>" . "<a href='page={$prevpage}'>上一页</a>" . "|" . "<a href='page={$nextpage}'>下一页</a>" . "</td>";
+echo "</tr>";
 echo "</table>";
+
+$totalrst->free_result();
+$result->free_result();
 $mysqli->close();
 ?>
