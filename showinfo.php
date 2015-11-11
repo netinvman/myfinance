@@ -7,7 +7,7 @@ $sender = $mysqli->real_escape_string($_GET['sender']);
 $receiver = $mysqli->real_escape_string($_GET['receiver']);
 
 
-$page = $_GET['page']?$_GET['page']:1;
+$page = (!empty($_GET['page']))?$_GET['page']:1;
 $limitnum = 10;
 $offset = ($page - 1) * $limitnum;
 $totalrst = $mysqli->query("SELECT COUNT(*) FROM activityinfo");
@@ -15,7 +15,7 @@ $totalarr = $totalrst->fetch_row();
 $totalpage = ceil($totalarr[0] / $limitnum);
 $prevpage = $page -1;
 $nextpage = $page + 1;
-if ($nextpage > totalpage) {
+if ($nextpage > $totalpage) {
     $nextpage = $totalpage;
 }
 $query = "SELECT * FROM activityinfo WHERE sender like '%{$sender}%' and receiver like '%{$receiver}%' order by id limit $offset, $limitnum";
@@ -47,7 +47,7 @@ while($row = $result->fetch_assoc()) {
     echo "</tr>";
 }
 echo "<tr>";
-echo "<td>" . "<a href='page={$prevpage}'>上一页</a>" . "|" . "<a href='page={$nextpage}'>下一页</a>" . "</td>";
+echo "<td colspan='8'>" . "<a href='page={$prevpage}'>上一页</a>" . "|" . "<a href='page={$nextpage}'>下一页</a>" . "</td>";
 echo "</tr>";
 echo "</table>";
 
