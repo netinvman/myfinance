@@ -17,7 +17,7 @@ if (!$mysqli->query($sql)) {
 }
 
 echo "<script>alert('添加成功！')</script>";
-echo "<script>location='index.html'</script>";
+echo "<script>location='index.php'</script>";
 
 $mysqli->close();
 ?>
