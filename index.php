@@ -31,18 +31,13 @@
     if ($nextpage > $totalpage) {
         $nextpage = $totalpage;
     }
-    echo "page:" . $page;
-    echo "<br>";
-    echo "prevpage:" . $prevpage;
-    echo "<br>";
-    echo "nextpage:" . $nextpage;
     $query = "SELECT * FROM activityinfo WHERE sender LIKE '%{$sender}%' AND receiver LIKE '%{$receiver}%' ORDER BY id LIMIT $offset, $limitnum";
     if (!$result = $mysqli->query($query)) {
         printf("Error: %s\n", $mysqli->error);
     }
+
     /* print result table */
     echo "<table border='1' width='800' cellspacing='0' align='center'>";
-    echo "<caption>信息列表</caption>";
     echo "<th>ID</th>";
     echo "<th>随礼人</th>";
     echo "<th>接收人</th>";
@@ -59,8 +54,8 @@
         echo "<td>" . $row['time'] . "</td>";
         echo "<td>" . $row['location'] . "</td>";
         echo "<td>" . $row['moneyamount'] . "</td>";
-        echo "<td>" . $row['description'] . "</td>";
-        echo "<td>" . "<a href=''>修改</a>" . "|" . "<a href=''>删除</a>" . "</td>";
+        echo "<td>" . "<a href='showdetail.php?id={$row['id']}'>" . substr($row['description'], 0, 60) . "</a>" . "</td>";
+        echo "<td>" . "<a href='edit.php?id={$row['id']}'>修改</a>" . "|" . "<a href='del.php?id={$row['id']}'>删除</a>" . "</td>";
         echo "</td>";
     }
     echo "<tr>";
